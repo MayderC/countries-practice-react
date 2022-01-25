@@ -12,7 +12,7 @@ import { NameItemSearchResult } from "../../components/NameItemSeacrhResult/Name
 
 export const CountriesView = () => {
 
-  const { propsSearchBar, data, itemFinded, notFound,loading } = UseContriesView();
+  const { propsSearchBar, data, itemFinded, notFound } = UseContriesView();
 
   const {theme} = useContext(Context)
   console.log(theme.background)
@@ -32,7 +32,6 @@ export const CountriesView = () => {
           }
         </SearchResult>
         <CountriesList>
-          {loading && data.length < 1  && <NameItemSearchResult name={'Loading'}>error</NameItemSearchResult>}
           {
             data[0]?.status === 404 
             ? <span>error</span>

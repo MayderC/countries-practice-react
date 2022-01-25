@@ -1,34 +1,43 @@
 import { useState, useEffect } from "react";
-import { useFetchApi } from "../../hooks/useFetchApi";
 
 export const UseContriesView = () => {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [itemFinded, setItemFinded] = useState([])
-  const { loading, getData } = useFetchApi();
-  const [notFound, setNotFound] = useState(false)
+  const [notFound, setNotFount] = useState(false)
 
   useEffect(() => {
-    if (search) {
-      getData(`https://restcountries.com/v3.1/name/${search}`).then(res =>{
-        if(res[0]?.status === 404){
-          setNotFound(true)
 
-          setTimeout(() => {
-            setNotFound(false)
-          }, 2000 );
+    if(search){
 
+
+      fetch(`https://restcountries.com/v3.1/name/${search}`)
+      .then(res => res.json())
+      .then(res => {
+        if(res.status === 404){
+          setNotFount(true)
+          setTimeout(()=>{
+            setNotFount(false)
+          },2000)
         }else{
-          setItemFinded(res)
+          setItemFinded(res);
         }
-      });
+      })
+  
     }
 
+
+    
   }, [search]);
 
   useEffect(() => {
-    getData("https://restcountries.com/v3.1/all").then(setData);
+    fetch("https://restcountries.com/v3.1/all")
+    .then(res => res.json())
+    .then(res => {
+      setData(res)
+    })
+
   }, []);
 
   const handleInputValue = ({ target }) => {
@@ -48,5 +57,5 @@ export const UseContriesView = () => {
     itemFinded
   };
 
-  return { propsSearchBar, loading, data, itemFinded, notFound };
+  return { propsSearchBar, data, itemFinded, notFound };
 };
