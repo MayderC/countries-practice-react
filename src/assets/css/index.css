@@ -1,0 +1,12 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body, h1, h2, ul, p {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-y: hidden;
+}
+

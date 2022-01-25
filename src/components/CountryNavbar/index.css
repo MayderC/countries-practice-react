@@ -1,0 +1,22 @@
+nav {
+  background-color: #2b3743;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  height: 60px;
+}
+
+
+.light{
+  background-color: #ffffff;
+  color: #2b3743;
+
+}
+
+
+.night{
+  color: #ffffff;
+  background-color: #2b3743;
+}

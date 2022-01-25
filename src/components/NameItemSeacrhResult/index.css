@@ -1,0 +1,15 @@
+.country__name--search-result{
+  background-color: #fff;
+  color: rgb(24, 24, 24);
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  border-radius: 13px;
+  cursor: pointerx;
+  transition: .2s;
+}
+
+
+.country__name--search-result:hover{
+  transform: scale(1.05);
+  transition: .2s;
+}

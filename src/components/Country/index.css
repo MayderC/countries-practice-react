@@ -1,0 +1,16 @@
+.card{
+  width: 250px;
+  background-color: #fff;
+  height: 300px;
+}
+.card__flag{
+  width: 100%;
+}
+
+.card__flag > img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+
+

@@ -1,0 +1,10 @@
+.countries__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 20px auto;
+  gap: 25px;
+  justify-content: center;
+  max-height: 70vh;
+  overflow-y: scroll;
+}

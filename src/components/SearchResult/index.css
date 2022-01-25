@@ -1,0 +1,10 @@
+.search__result{
+  width: 85%;
+  min-height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  align-items: center;
+  gap: 25px;
+
+}
