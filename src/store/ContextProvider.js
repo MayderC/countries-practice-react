@@ -11,24 +11,35 @@ const initialState = {
     name: 'light',  
     background : '#dedede',
     color : '212e37'
-  }
+  },
+  finded : {}
 }
 
 export const ContextProvider = ({children}) => {
 
-  const [theme, setTheme] = useState(initialState.night);
+  const [theme, setState] = useState(initialState.night);
+  const [flagFinded, setFlagFinded] = useState({})
 
   const switchTheme = () => {
     if(theme.name === 'night'){
-      setTheme({...initialState.light})
+      setState({...initialState.light})
     }else if(theme.name === 'light'){
-      setTheme({...initialState.night})
+      setState({...initialState.night})
     }
+  }
+
+
+  const addFlagFinded = (flag)  => {
+
+    setFlagFinded(flag)
 
   }
 
+
+
+
   return(
-    <Context.Provider value={{theme, switchTheme}}>
+    <Context.Provider value={{theme, switchTheme, flagFinded, addFlagFinded}}>
       {children}
     </Context.Provider>
   )

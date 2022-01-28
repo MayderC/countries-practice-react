@@ -1,9 +1,11 @@
-.card{
+.card {
   width: 250px;
   background-color: #fff;
   height: 300px;
+  overflow: hidden;
 }
-.card__flag{
+
+.card__flag {
   width: 100%;
 }
 
@@ -12,5 +14,3 @@
   height: 150px;
   object-fit: cover;
 }
-
-

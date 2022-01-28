@@ -3,7 +3,6 @@ import './index.css'
 
 
 export const Country = ({ country }) => {
-
   const flag = country.flags.svg
 
   return (
@@ -12,7 +11,7 @@ export const Country = ({ country }) => {
         <div className="card__flag">
           <img src={flag} alt="" />
         </div>
-        <p>{country.name.common}</p>
+        <p style={{color: 'black'}}> {country.name.common}</p>
       </div>
     </>
   );
