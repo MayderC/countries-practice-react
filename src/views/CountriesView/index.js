@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Context } from "../../store/Conext";
 
 export const UseContriesView = () => {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
 
-  //todo: data en el stado global para, realizar una solo consulta de todos los items
-  //todo : solo buscar cuando ingresa un nombre.
-  const [data, setData] = useState([]);
-
-  // todo: itemFinded en el stado global, para mentener el resultado de la busqueda despues de ver una bandera
-  const [itemFinded, setItemFinded] = useState([]);
+  // todo: itemFound en el stado global, para mentener el resultado de la busqueda despues de ver una bandera
   const [notFound, setNotFount] = useState(false);
+
+  // obtieniendo estado global useContext
+  const {
+    theme,
+    addFlagFinded,
+    setCountries,
+    setCountriesFound,
+    setCurrentCountry,
+    state,
+  } = useContext(Context);
 
   useEffect(() => {
     if (search) {
@@ -23,7 +29,7 @@ export const UseContriesView = () => {
               setNotFount(false);
             }, 2000);
           } else {
-            setItemFinded(res);
+            setCountriesFound(res);
           }
         });
     }
@@ -33,7 +39,7 @@ export const UseContriesView = () => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((res) => {
-        setData(res);
+        setCountries(res);
       });
   }, []);
 
@@ -51,8 +57,16 @@ export const UseContriesView = () => {
     input,
     handleSetSearch,
     handleInputValue,
-    itemFinded,
+    itemFound: state.COUNTRIES_FOUND,
   };
 
-  return { propsSearchBar, data, itemFinded, notFound };
+  return {
+    theme,
+    addFlagFinded,
+    propsSearchBar,
+    itemFound: state.COUNTRIES_FOUND,
+    notFound,
+    setCurrentCountry,
+    items: state.COUNTRIES,
+  };
 };

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Country } from "../Country/Country";
 import { Context } from "./../../store/Conext";
@@ -7,14 +6,7 @@ import "./index.css";
 
 export const CountryDetail = () => {
   const context = useContext(Context);
-  const navigate = useNavigate();
-  const country = context.flagFinded[0];
-
-  useEffect(() => {
-    if (!country) {
-      navigate("/");
-    }
-  }, [country, navigate]);
+  const country = context.state.CURRENT_COUNTRY;
 
   return (
     <main

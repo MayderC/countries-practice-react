@@ -1,26 +1,27 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { SearchResult } from "../../components/SearchResult/SearchResult";
 import { Country } from "../../components/Country/Country";
 import { CountriesList } from "../../components/CountriesList/CountriesList";
-import { Context } from "../../store/Conext";
-import { useContext } from "react";
 import { UseContriesView } from "./index";
-import "./index.css";
 import { NameItemSearchResult } from "../../components/NameItemSeacrhResult/NameItemSearchResult";
+import "./index.css";
 
 export const CountriesView = () => {
-  const { propsSearchBar, data, itemFinded, notFound } = UseContriesView();
+  const {
+    propsSearchBar,
+    itemFound,
+    notFound,
+    items,
+    theme,
+    setCurrentCountry,
+  } = UseContriesView();
 
-  const { theme, addFlagFinded } = useContext(Context);
-
-  const clickOnResult = () => {
-    addFlagFinded(itemFinded);
+  const clickOnResult = (item) => {
+    setCurrentCountry(item);
   };
-
   const clickOnAll = (item) => {
-    addFlagFinded([item]);
+    setCurrentCountry(item);
   };
 
   return (
@@ -31,39 +32,35 @@ export const CountriesView = () => {
       >
         <SearchBar props={propsSearchBar} />
         <SearchResult>
-          {notFound ? (
-            <NameItemSearchResult name={"Not found"}>
-              error
-            </NameItemSearchResult>
-          ) : (
-            itemFinded.map((item) => (
+          {notFound && (
+            <NameItemSearchResult name={"Not found"}></NameItemSearchResult>
+          )}
+          {itemFound &&
+            itemFound.map((item) => (
               <Link
                 className="card_link"
                 key={item.name.common}
                 to={`/${item.name.common}`}
-                onClick={clickOnResult}
+                onClick={() => clickOnResult(item)}
               >
                 <NameItemSearchResult
                   name={item.name.common}
                 ></NameItemSearchResult>
               </Link>
-            ))
-          )}
+            ))}
         </SearchResult>
         <CountriesList>
-          {data[0]?.status === 404 ? (
-            <span>error</span>
-          ) : (
-            data.map((item) => (
-              <Link
-                key={item.name.official}
-                onClick={() => clickOnAll(item)}
-                to={`/${item.name.official}`}
-              >
-                <Country country={item} />
-              </Link>
-            ))
-          )}
+          {items
+            ? items.map((item) => (
+                <Link
+                  key={item.name.official}
+                  onClick={() => clickOnAll(item)}
+                  to={`/${item.name.official}`}
+                >
+                  <Country country={item} />
+                </Link>
+              ))
+            : null}
         </CountriesList>
       </main>
     </>

@@ -1,46 +1,61 @@
-import {Context} from './Conext'
-import {useState} from 'react'
+import { Context } from "./Conext";
+import { useState, useReducer } from "react";
+import { Reducer } from "./reducer";
+import {
+  SET_COUNTRIES,
+  SET_COUNTRIES_FOUND,
+  SET_CURRENT_COUNTRY,
+} from "./types";
 
 const initialState = {
-  night : {
-    name : "night",
-    background : '#212e37',
-    color : "#fff"
+  night: {
+    name: "night",
+    background: "#212e37",
+    color: "#fff",
   },
-  light : {
-    name: 'light',  
-    background : '#dedede',
-    color : '212e37'
+  light: {
+    name: "light",
+    background: "#dedede",
+    color: "212e37",
   },
-  finded : {}
-}
+};
 
-export const ContextProvider = ({children}) => {
-
+export const ContextProvider = ({ children }) => {
   const [theme, setState] = useState(initialState.night);
-  const [flagFinded, setFlagFinded] = useState({})
+  const [state, dispatch] = useReducer(Reducer, {});
 
   const switchTheme = () => {
-    if(theme.name === 'night'){
-      setState({...initialState.light})
-    }else if(theme.name === 'light'){
-      setState({...initialState.night})
+    if (theme.name === "night") {
+      setState({ ...initialState.light });
+    } else if (theme.name === "light") {
+      setState({ ...initialState.night });
     }
-  }
+  };
 
+  const setCountriesFound = (countries) => {
+    dispatch({ type: SET_COUNTRIES_FOUND, payload: countries });
+  };
 
-  const addFlagFinded = (flag)  => {
+  const setCountries = (countries) => {
+    dispatch({ type: SET_COUNTRIES, payload: countries });
+  };
 
-    setFlagFinded(flag)
+  const setCurrentCountry = (country) => {
+    dispatch({ type: SET_CURRENT_COUNTRY, payload: country });
+  };
 
-  }
-
-
-
-
-  return(
-    <Context.Provider value={{theme, switchTheme, flagFinded, addFlagFinded}}>
+  return (
+    <Context.Provider
+      value={{
+        theme,
+        state,
+        switchTheme,
+        setCountriesFound,
+        setCountries,
+        setCurrentCountry,
+      }}
+    >
       {children}
     </Context.Provider>
-  )
-}
+  );
+};
