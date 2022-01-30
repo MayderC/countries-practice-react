@@ -33,7 +33,7 @@ export const UseContriesView = () => {
           }
         });
     }
-  }, [search]);
+  }, [search, setCountriesFound]);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -41,7 +41,7 @@ export const UseContriesView = () => {
       .then((res) => {
         setCountries(res);
       });
-  }, []);
+  }, [setCountries]);
 
   const handleInputValue = ({ target }) => {
     setInput(target.value);
