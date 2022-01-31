@@ -1,7 +1,6 @@
-.search__container{
+.search__container {
   height: 95px;
 }
-
 
 .search__container > form {
   display: flex;
@@ -12,32 +11,26 @@
   font-weight: bold;
 }
 
-
-.search__container input{
+.search__container input {
   font-family: "Poppins", sans-serif;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 0;
   outline: 0;
 }
 
-.search__input--search{
+.search__input--search {
   font-size: 18px;
   width: 80%;
   padding: 0 1.5rem;
 }
 
-
-
-
-.light{
+.light {
   background-color: #ffffff;
   color: #2b3743;
-
 }
 
-
-.night{
+.night {
   color: #ffffff;
   background-color: #2b3743;
 }

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { Country } from "../Country/Country";
 import { Context } from "./../../store/Conext";
 import "./index.css";
@@ -7,29 +7,34 @@ import "./index.css";
 export const CountryDetail = () => {
   const context = useContext(Context);
   const country = context.state.CURRENT_COUNTRY;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!country.capital) {
+      navigate("/");
+    }
+  });
 
   return (
     <main
       style={{ backgroundColor: context.theme.background }}
       className={`detail__main ${context.theme.name}`}
     >
-      <Link className="link" to="/">
-        Atras
-      </Link>
+      <div className="navegation__back">
+        <Link className="link" to="/">
+          Atras
+        </Link>
+      </div>
 
-      <section className="country__details">
-        <div className="detail__title">
-          {country && <h1>Detalles generales de {country.name.common}</h1>}
-        </div>
-        <div className={`detail__items`}>
-          <div className="country_detail-item">
-            {country && <Country country={country}></Country>}
+      <div className="detail__body">
+        <section className="country__details">
+          <div className={`detail__items`}>
+            <div className="country_detail-item">
+              {country.region && <Country country={country}></Country>}
+            </div>
           </div>
-          <div className="country_detail-item">
-            {country && <h2>{country.name.common}</h2>}
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 };

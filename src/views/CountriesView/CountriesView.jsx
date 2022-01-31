@@ -38,7 +38,6 @@ export const CountriesView = () => {
           {itemFound.length > 0 &&
             itemFound.map((item) => (
               <Link
-                className="card_link"
                 key={item.name.common}
                 to={`/${item.name.common}`}
                 onClick={() => clickOnResult(item)}

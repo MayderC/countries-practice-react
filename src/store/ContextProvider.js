@@ -5,6 +5,7 @@ import {
   SET_COUNTRIES,
   SET_COUNTRIES_FOUND,
   SET_CURRENT_COUNTRY,
+  SET_BORDER_BY,
 } from "./types";
 
 const initialState = {
@@ -50,6 +51,10 @@ export const ContextProvider = ({ children }) => {
     dispatch({ type: SET_CURRENT_COUNTRY, payload: country });
   }, []);
 
+  const setNewOrder = useCallback((countries) => {
+    dispatch({ type: SET_BORDER_BY, payload: countries });
+  }, []);
+
   return (
     <Context.Provider
       value={{
@@ -59,7 +64,7 @@ export const ContextProvider = ({ children }) => {
         setCountriesFound,
         setCountries,
         setCurrentCountry,
-        dispatch,
+        setNewOrder,
       }}
     >
       {children}

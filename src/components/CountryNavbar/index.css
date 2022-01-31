@@ -8,15 +8,18 @@ nav {
   height: 60px;
 }
 
-
-.light{
+.light {
   background-color: #ffffff;
   color: #2b3743;
-
 }
 
-
-.night{
+.night {
   color: #ffffff;
   background-color: #2b3743;
+}
+
+@media (max-width: 430px) {
+  nav {
+    padding: 0 15px;
+  }
 }

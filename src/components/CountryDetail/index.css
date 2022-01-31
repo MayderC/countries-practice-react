@@ -1,16 +1,29 @@
-.detail__main{
-  min-height: 100vh;
+.navegation__back {
   width: 100%;
-  padding: 100px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding: 30px;
 }
 
-.detail__title{
+.detail__main {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.detail__title {
   text-align: center;
   padding: 50px 0;
 }
 
-.detail__items{
+.detail__body {
+  height: calc(80vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail__items {
   display: flex;
   justify-content: space-around;
 }
-

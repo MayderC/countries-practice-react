@@ -29,8 +29,9 @@ export const UseContriesView = () => {
     }
   }, [search, setCountriesFound]);
 
-  const handleInputValue = ({ target }) => {
-    setInput(target.value);
+  const handleInputValue = (event) => {
+    event.preventDefault();
+    setInput(event.target.value);
   };
 
   const handleSetSearch = (event) => {
@@ -43,7 +44,6 @@ export const UseContriesView = () => {
     input,
     handleSetSearch,
     handleInputValue,
-    itemFound: state.COUNTRIES_FOUND,
   };
 
   return {
