@@ -1,22 +1,37 @@
-import { Routes, Route} from 'react-router-dom'
-import {CountryNavbar} from './components/CountryNavbar/CountryNavbar'
+import { useContext, useEffect } from "react";
+import { Context } from "./store/Conext";
+import { Routes, Route } from "react-router-dom";
+import { CountryNavbar } from "./components/CountryNavbar/CountryNavbar";
 import { CountriesView } from "./views/CountriesView/CountriesView";
-import {ContextProvider} from './store/ContextProvider'
-import { CountryDetail } from './components/CountryDetail/CountryDetail';
-
+import { CountryDetail } from "./components/CountryDetail/CountryDetail";
 
 function App() {
+  const { setCountries } = useContext(Context);
 
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setCountries(res);
+      });
+  }, [setCountries]);
+
+  useEffect(() => {
+    console.log("SIN");
+  });
+
+  useEffect(() => {
+    console.log("ARRAY");
+  }, []);
 
   return (
     <>
-    <ContextProvider>
       <CountryNavbar />
-        <Routes>
-          <Route path="/" element={<CountriesView></CountriesView>}></Route>
-          <Route path="/:name" element={<CountryDetail></CountryDetail>}></Route>
-        </Routes>
-    </ContextProvider>
+      <Routes>
+        <Route path="/" element={<CountriesView></CountriesView>}></Route>
+        <Route path="/:name" element={<CountryDetail></CountryDetail>}></Route>
+      </Routes>
     </>
   );
 }

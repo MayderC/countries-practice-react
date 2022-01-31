@@ -9,14 +9,8 @@ export const UseContriesView = () => {
   const [notFound, setNotFount] = useState(false);
 
   // obtieniendo estado global useContext
-  const {
-    theme,
-    addFlagFinded,
-    setCountries,
-    setCountriesFound,
-    setCurrentCountry,
-    state,
-  } = useContext(Context);
+  const { theme, setCountriesFound, setCurrentCountry, state } =
+    useContext(Context);
 
   useEffect(() => {
     if (search) {
@@ -34,14 +28,6 @@ export const UseContriesView = () => {
         });
     }
   }, [search, setCountriesFound]);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => res.json())
-      .then((res) => {
-        setCountries(res);
-      });
-  }, [setCountries]);
 
   const handleInputValue = ({ target }) => {
     setInput(target.value);
@@ -62,7 +48,6 @@ export const UseContriesView = () => {
 
   return {
     theme,
-    addFlagFinded,
     propsSearchBar,
     itemFound: state.COUNTRIES_FOUND,
     notFound,

@@ -1,5 +1,5 @@
 import { Context } from "./Conext";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useCallback, useEffect } from "react";
 import { Reducer } from "./reducer";
 import {
   SET_COUNTRIES,
@@ -20,9 +20,15 @@ const initialState = {
   },
 };
 
+const contextState = {
+  COUNTRIES: [],
+  CURRENT_COUNTRY: {},
+  COUNTRIES_FOUND: [],
+};
+
 export const ContextProvider = ({ children }) => {
   const [theme, setState] = useState(initialState.night);
-  const [state, dispatch] = useReducer(Reducer, {});
+  const [state, dispatch] = useReducer(Reducer, contextState);
 
   const switchTheme = () => {
     if (theme.name === "night") {
@@ -32,17 +38,17 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  const setCountriesFound = (countries) => {
+  const setCountriesFound = useCallback((countries) => {
     dispatch({ type: SET_COUNTRIES_FOUND, payload: countries });
-  };
+  }, []);
 
-  const setCountries = (countries) => {
+  const setCountries = useCallback((countries) => {
     dispatch({ type: SET_COUNTRIES, payload: countries });
-  };
+  }, []);
 
-  const setCurrentCountry = (country) => {
+  const setCurrentCountry = useCallback((country) => {
     dispatch({ type: SET_CURRENT_COUNTRY, payload: country });
-  };
+  }, []);
 
   return (
     <Context.Provider
@@ -53,6 +59,7 @@ export const ContextProvider = ({ children }) => {
         setCountriesFound,
         setCountries,
         setCurrentCountry,
+        dispatch,
       }}
     >
       {children}

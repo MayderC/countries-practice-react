@@ -35,7 +35,7 @@ export const CountriesView = () => {
           {notFound && (
             <NameItemSearchResult name={"Not found"}></NameItemSearchResult>
           )}
-          {itemFound &&
+          {itemFound.length > 0 &&
             itemFound.map((item) => (
               <Link
                 className="card_link"
