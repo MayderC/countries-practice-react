@@ -1,5 +1,5 @@
 import { Context } from "./Conext";
-import { useState, useReducer, useCallback, useEffect } from "react";
+import { useState, useReducer, useCallback } from "react";
 import { Reducer } from "./reducer";
 import {
   SET_COUNTRIES,
