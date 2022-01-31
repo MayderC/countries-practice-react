@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "./store/Conext";
 import { Routes, Route } from "react-router-dom";
 import { CountryNavbar } from "./components/CountryNavbar/CountryNavbar";
