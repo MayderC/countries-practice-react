@@ -1,10 +1,12 @@
-import {Context} from '../../store/Conext'
-import {useContext} from 'react'
+import { Context } from "../../store/Conext";
+import { useContext } from "react";
 import "./index.css";
 
-export const CountryNavbar = () => {
+import night from "../../assets/img/night.svg";
+import ligth from "../../assets/img/light.png";
 
-  const {switchTheme, theme} = useContext(Context)
+export const CountryNavbar = () => {
+  const { switchTheme, theme } = useContext(Context);
 
   return (
     <>
@@ -12,8 +14,12 @@ export const CountryNavbar = () => {
         <div className="name">
           <h1>Country</h1>
         </div>
-        <div className="theme_selector">
-          <span onClick={switchTheme}>theme selector</span>
+        <div onClick={switchTheme} className="theme_selector">
+          {theme.name === "night" ? (
+            <img src={ligth} alt="" srcset="" />
+          ) : (
+            <img src={night} alt="" srcset="" />
+          )}
         </div>
       </nav>
     </>
